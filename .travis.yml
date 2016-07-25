@@ -4,8 +4,12 @@ node_js:
 before_script:
   - npm install
   - npm install -g gulp
+install:
+  - npm install -g codecov
 script:
   - npm test
+  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+  - codecov
 notifications:
   webhooks:
     urls:
